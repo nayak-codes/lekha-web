@@ -148,6 +148,68 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
 /* CONFETTI */
 .cf{position:fixed;pointer-events:none;z-index:999;animation:cff 2s cubic-bezier(.2,.8,.3,1) forwards;}
 @keyframes cff{0%{opacity:1;transform:translateY(0) rotate(0deg);}85%{opacity:.9;}100%{opacity:0;transform:translateY(300px) rotate(680deg) scale(.4);}}
+/* ── S7: GOOD NIGHT ── */
+#s7{background:radial-gradient(ellipse at 50% 0%,#0f0525 0%,#080510 100%);}
+
+.gn-wrap{
+  width:100%;max-width:340px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  position:relative;z-index:2;
+}
+
+.moon-anim{
+  font-size:4.2rem;
+  animation:moonFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 24px rgba(196,181,253,.5));
+  margin-bottom:.3rem;
+}
+@keyframes moonFloat{
+  0%,100%{transform:translateY(0) rotate(-8deg);}
+  50%{transform:translateY(-12px) rotate(8deg);}
+}
+
+.gn-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,8vw,3rem);
+  font-weight:600;line-height:1.15;
+  color:#ede9fe;
+}
+.gn-name{
+  background:linear-gradient(135deg,#ede9fe,#c4b5fd,#c084fc);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-style:italic;
+}
+
+.gn-div{
+  width:44px;height:1px;
+  background:linear-gradient(90deg,transparent,#c4b5fd,transparent);
+  margin:.2rem auto;
+}
+
+.gn-body{
+  font-size:.9rem;color:rgba(245,240,255,.65);
+  line-height:1.75;
+}
+.gn-soft{
+  font-size:.82rem;color:rgba(245,240,255,.38);
+}
+
+.gn-sig{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;color:#c084fc;
+  font-size:1.05rem;margin-top:.3rem;
+}
+
+/* tiny twinkling stars */
+.star{
+  position:absolute;border-radius:50%;background:#fff;
+  animation:twinkle ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.15;transform:scale(1);}
+  50%{opacity:.9;transform:scale(1.4);}
+}
+
 @keyframes fu{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
@@ -166,6 +228,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
   <div class="dot" onclick="g(4)"></div>
   <div class="dot" onclick="g(5)"></div>
   <div class="dot" onclick="g(6)"></div>
+  <div class="dot" onclick="g(7)"></div>
 </div>
 
 <div id="slides">
@@ -353,12 +416,46 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
     </div>
     <div class="nav-row si" style="transition-delay:.1s">
       <button class="btn bg" onclick="g(5)">← back</button>
+      <button class="btn bp" onclick="g(7)">next →</button>
+    </div>
+  </div>
+
+  <!-- S7: GOOD NIGHT -->
+  <div class="slide" id="s7">
+    <div id="stars-wrap" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
+    <div class="gn-wrap si">
+      <div class="moon-anim">🌙</div>
+      <div class="gn-title">good night,<br><span class="gn-name">Lekha.</span></div>
+      <div class="gn-div"></div>
+      <p class="gn-body">nuvvu ee page close chesaka<br>naa ki oka reply ichhe —<br>adi chalu. 💜</p>
+      <p class="gn-body gn-soft">nuvvu well rest chesuko.<br>take care. 🌸</p>
+      <div class="gn-sig">— always. 💜</div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.35s">
+      <button class="btn bg" onclick="g(6)">← back</button>
     </div>
   </div>
 
 </div>
 
 <script>
+// good night stars
+(function(){
+  var wrap = document.getElementById('stars-wrap');
+  if(!wrap) return;
+  for(var i=0;i<55;i++){
+    var s=document.createElement('div');
+    s.className='star';
+    var sz=1+Math.random()*2.2;
+    s.style.cssText='width:'+sz+'px;height:'+sz+'px;'
+      +'left:'+Math.random()*100+'%;'
+      +'top:'+Math.random()*100+'%;'
+      +'animation-duration:'+(2+Math.random()*3)+'s;'
+      +'animation-delay:'+(Math.random()*4)+'s;';
+    wrap.appendChild(s);
+  }
+})();
+
 // petals
 (function(){
   var c=document.getElementById('pt');
@@ -376,7 +473,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
   }
 })();
 
-var cur=0,busy=false,TOTAL=7;
+var cur=0,busy=false,TOTAL=8;
 var SL=document.querySelectorAll('.slide');
 var DT=document.querySelectorAll('.dot');
 

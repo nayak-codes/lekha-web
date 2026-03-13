@@ -1,0 +1,574 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lekha's Funny Website 😂</title>
+  <style>
+    :root {
+      --pink: #ff4d6d;
+      --light: #fff;
+      --bg1: #ff9a9e;
+      --bg2: #fad0c4;
+      --shadow: rgba(0, 0, 0, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      animation: gradientShift 12s ease infinite;
+      overflow-x: hidden;
+      padding: 2rem 1rem 4rem;
+      color: #222;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.25), transparent 60%),
+        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.16), transparent 55%);
+      filter: blur(40px);
+      opacity: 0.85;
+      animation: slowDrift 14s ease-in-out infinite;
+      z-index: -2;
+    }
+
+    @keyframes slowDrift {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(55px, -40px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      margin: 0;
+      letter-spacing: 0.02em;
+      color: var(--light);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+
+    .sparkle {
+      display: inline-block;
+      opacity: 0.9;
+      animation: floatSparkle 2.4s ease-in-out infinite;
+    }
+
+    @keyframes floatSparkle {
+      0% { transform: translateY(0) scale(1); opacity: 0.9; }
+      50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 0.9; }
+    }
+
+    .page-header {
+      padding: 2.5rem 1rem 0;
+      max-width: 900px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .page-header.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tagline {
+      margin: 0.75rem auto 0;
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 520px;
+    }
+
+    .pages {
+      display: flex;
+      width: 400vw;
+      transition: transform 0.8s ease;
+      margin-top: 2rem;
+      perspective: 1200px;
+    }
+
+    .page {
+      width: 100vw;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .page.slide-left {
+      transform: translateX(30px) translateY(16px) scale(0.98);
+    }
+
+    .page.slide-right {
+      transform: translateX(-30px) translateY(16px) scale(0.98);
+    }
+
+    .page.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .page .card {
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    .page.active .card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card {
+      position: relative;
+      width: min(460px, 100%);
+      padding: 2.5rem 2rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px var(--shadow);
+      animation: floatCard 6s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    @keyframes floatCard {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0); }
+    }
+
+    .card::before,
+    .card::after {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .card::before {
+      top: -120px;
+      left: -120px;
+      background: radial-gradient(circle at 30% 30%, #ffb3c1 0%, transparent 60%);
+    }
+
+    .card::after {
+      bottom: -120px;
+      right: -120px;
+      background: radial-gradient(circle at 70% 70%, #ffd6a5 0%, transparent 62%);
+    }
+
+    h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      margin: 0.6rem 0;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .facts {
+      text-align: left;
+      padding-left: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .facts li {
+      margin: 0.5rem 0;
+    }
+
+    .alert {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 77, 109, 0.12);
+      color: #ff2e65;
+      font-weight: 600;
+      margin: 0.85rem 0 1.5rem;
+      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.2);
+    }
+
+    button {
+      position: relative;
+      padding: 0.85rem 1.4rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, #ff4d6d, #ffb3c1);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 18px 30px rgba(255, 77, 109, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 65%);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    button:active::after {
+      opacity: 1;
+      transform: scale(1.25);
+      transition: none;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 24px 40px rgba(255, 77, 109, 0.35);
+    }
+
+    button:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    button .pop {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      animation: pop 0.6s ease-out;
+    }
+
+    @keyframes pop {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 0; transform: scale(1.3); }
+    }
+
+    #joke {
+      margin-top: 1.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #333;
+      min-height: 3.2rem;
+    }
+
+    .secret {
+      min-height: 3rem;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .pager {
+      position: fixed;
+      bottom: 1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.6rem;
+      z-index: 10;
+    }
+
+    .pager__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .page-header, .page .card, .pager__dot {
+      will-change: transform, opacity;
+    }
+
+    .pager__dot.active {
+      background: rgba(255, 255, 255, 0.95);
+      transform: scale(1.25);
+    }
+
+    .confetti {
+      position: fixed;
+      pointer-events: none;
+      width: 12px;
+      height: 12px;
+      opacity: 0;
+      transform-origin: center;
+      animation: confettiFall 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+    }
+
+    @keyframes confettiFall {
+      0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+      70% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(280px) rotate(720deg) scale(0.6); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="page-header">
+    <h1>
+      Hey Lekha
+      <span class="sparkle" aria-hidden="true">✨</span>
+      My Friend
+      <span class="sparkle" aria-hidden="true">✨</span>
+    </h1>
+    <p class="tagline" data-text="Nuvvu na friend, na special person. Iddam cheppali anukuntunna..."></p>
+  </header>
+
+  <main class="pages" aria-label="Lekha story pages">
+    <section class="page" data-page="0" aria-label="Welcome page">
+      <div class="card">
+        <h2>Welcome!</h2>
+        <p>Ready for a mini adventure about the one and only Lekha?</p>
+
+        <button type="button" data-action="next">
+          Let’s go!
+          <span class="pop" aria-hidden="true">🚀</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="page" data-page="1" aria-label="About Lekha">
+      <div class="card">
+        <h2>About Lekha</h2>
+        <p>She turns simple moments into unforgettable memories, and everyone around her smiles a little wider.</p>
+        <ul class="facts">
+          <li>✨ Has a talent for making friends laugh instantly</li>
+          <li>🎨 Loves creativity, color, and surprises</li>
+          <li>💖 Always makes kindness feel effortless</li>
+        </ul>
+        <div class="card-actions">
+          <button type="button" data-action="prev">Back</button>
+          <button type="button" data-action="next">Next</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" data-page="2" aria-label="Secret surprise">
+      <div class="card">
+        <h2>Secret surprise</h2>
+        <p>Tap the button to reveal a compliment and light up the screen with confetti.</p>
+
+        <button type="button" data-action="secret">
+          Reveal the Secret
+          <span class="pop" aria-hidden="true">💥</span>
+        </button>
+
+        <p id="joke" aria-live="polite" class="secret"></p>
+
+        <div class="card-actions">
+          <button type="button" data-action="prev">Back</button>
+          <button type="button" data-action="home">Home</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" data-page="3" aria-label="Final message">
+      <div class="card">
+        <h2>Just one more thing...</h2>
+        <p>Every moment with you feels like a highlight reel — and this page is our final encore.</p>
+        <p>Thanks for scrolling! Keep being unforgettable.</p>
+
+        <div class="card-actions">
+          <button type="button" data-action="prev">Back</button>
+          <button type="button" data-action="home">Home</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="pager" aria-label="Page indicator">
+    <span class="pager__dot" data-page="0"></span>
+    <span class="pager__dot" data-page="1"></span>
+    <span class="pager__dot" data-page="2"></span>
+    <span class="pager__dot" data-page="3"></span>
+  </div>
+
+  <script>
+    const pages = Array.from(document.querySelectorAll('.page'));
+    const pagerDots = Array.from(document.querySelectorAll('.pager__dot'));
+    const pagesEl = document.querySelector('.pages');
+    const complimentText = document.getElementById('joke');
+
+    const compliments = [
+      "Your smile is a full-on superpower, Lekha! 😍",
+      "Every room gets brighter when you walk in. 🌟",
+      "Your laughter is the best kind of music. 🎶",
+      "Legends are written about people like you. 📖",
+      "You’re the kind of energy everyone wants around. ✨",
+      "If happiness had a face, it would look like yours. 😁",
+    ];
+
+    let currentPage = 0;
+
+    function setPage(index, direction = 0) {
+      const newIndex = Math.max(0, Math.min(index, pages.length - 1));
+      currentPage = newIndex;
+
+      pages.forEach((page, i) => {
+        page.classList.toggle('active', i === currentPage);
+        page.setAttribute('aria-hidden', i === currentPage ? 'false' : 'true');
+
+        page.classList.remove('slide-left', 'slide-right');
+        if (i !== currentPage) {
+          page.classList.add(direction > 0 ? 'slide-left' : 'slide-right');
+        }
+      });
+
+      pagesEl.style.transform = `translateX(-${currentPage * 100}vw)`;
+      pagerDots.forEach((dot, i) => dot.classList.toggle('active', i === currentPage));
+    }
+
+    function randomItem(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    function triggerConfetti(amount) {
+      const colors = ['#ff49a0', '#ffcc4d', '#6dffb7', '#61d6ff', '#b67bff'];
+      for (let i = 0; i < amount; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'confetti';
+        dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+        dot.style.left = `${Math.random() * 100}vw`;
+        dot.style.top = `${-20 - Math.random() * 40}px`;
+        dot.style.width = `${8 + Math.random() * 10}px`;
+        dot.style.height = dot.style.width;
+        dot.style.transform = `rotate(${Math.random() * 360}deg)`;
+        dot.style.animationDuration = `${1.2 + Math.random() * 0.6}s`;
+        dot.style.animationDelay = `${Math.random() * 0.2}s`;
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 1900);
+      }
+    }
+
+    function showSecret() {
+      complimentText.textContent = randomItem(compliments);
+      triggerConfetti(24);
+    }
+
+    function typeText(el, text, speed = 35) {
+      el.textContent = '';
+      let i = 0;
+      const interval = setInterval(() => {
+        el.textContent += text[i] || '';
+        i += 1;
+        if (i > text.length) clearInterval(interval);
+      }, speed);
+    }
+
+    function addSwipeNavigation() {
+      let startX = 0;
+      let startY = 0;
+      let isMoving = false;
+
+      window.addEventListener('touchstart', (event) => {
+        const touch = event.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        isMoving = true;
+      });
+
+      window.addEventListener('touchmove', (event) => {
+        if (!isMoving) return;
+        const touch = event.touches[0];
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
+          isMoving = false;
+          if (deltaX < 0) setPage(currentPage + 1, 1);
+          else setPage(currentPage - 1, -1);
+        }
+      });
+
+      window.addEventListener('touchend', () => {
+        isMoving = false;
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      const action = event.target.closest('[data-action]')?.dataset?.action;
+      if (!action) return;
+
+      if (action === 'next') setPage(currentPage + 1, 1);
+      if (action === 'prev') setPage(currentPage - 1, -1);
+      if (action === 'home') setPage(0);
+      if (action === 'secret') showSecret();
+    });
+
+    pagerDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const target = Number(dot.dataset.page);
+        setPage(target, target > currentPage ? 1 : -1);
+      });
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') setPage(currentPage + 1, 1);
+      if (event.key === 'ArrowLeft') setPage(currentPage - 1, -1);
+      if (event.key === 'Escape') setPage(0);
+    });
+
+    // Kick off first view
+    document.body.classList.add('loaded');
+    addSwipeNavigation();
+
+    const tagline = document.querySelector('.tagline');
+    setTimeout(() => {
+      document.querySelector('.page-header')?.classList.add('visible');
+      if (tagline && tagline.dataset.text) typeText(tagline, tagline.dataset.text, 32);
+    }, 200);
+
+    pages[0].classList.add('active');
+    pages[0].setAttribute('aria-hidden', 'false');
+    setPage(0);
+  </script>
+</body>
+</html>

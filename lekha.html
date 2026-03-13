@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Only for Lekha 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--p1:#c084fc;--p2:#a855f7;--lav:#ede9fe;--lav2:#ddd6fe;--lav3:#c4b5fd;--dark:#0d0b14;--card:rgba(196,181,253,0.07);--card-b:rgba(196,181,253,0.15);--text:#f5f0ff;--muted:rgba(245,240,255,0.52);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-tap-highlight-color:transparent;}
+
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.aurora-orb{position:absolute;border-radius:50%;filter:blur(80px);}
+.orb1{width:420px;height:420px;background:radial-gradient(circle,rgba(168,85,247,0.26),transparent 70%);top:-80px;left:-60px;animation:drift1 18s ease-in-out infinite;}
+.orb2{width:360px;height:360px;background:radial-gradient(circle,rgba(192,132,252,0.18),transparent 70%);bottom:-60px;right:-40px;animation:drift2 22s ease-in-out infinite;}
+.orb3{width:240px;height:240px;background:radial-gradient(circle,rgba(237,233,254,0.1),transparent 70%);top:42%;left:58%;animation:drift3 15s ease-in-out infinite;}
+@keyframes drift1{0%,100%{transform:translate(0,0);}50%{transform:translate(55px,38px);}}
+@keyframes drift2{0%,100%{transform:translate(0,0);}50%{transform:translate(-48px,-28px);}}
+@keyframes drift3{0%,100%{transform:translate(0,0);}50%{transform:translate(-38px,48px);}}
+
+.petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.petal{position:absolute;border-radius:50% 0 50% 0;animation:petalFall linear infinite;opacity:0;}
+@keyframes petalFall{0%{transform:translateY(-20px) rotate(0deg);opacity:0;}8%{opacity:0.55;}92%{opacity:0.38;}100%{transform:translateY(110vh) rotate(700deg);opacity:0;}}
+
+#slides{position:fixed;inset:0;z-index:2;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem 3.8rem;pointer-events:none;opacity:0;overflow:hidden;}
+.slide.current{pointer-events:auto;opacity:1;}
+.slide.enter-r{animation:inR 0.6s cubic-bezier(0.22,1,0.36,1) forwards;}
+.slide.enter-l{animation:inL 0.6s cubic-bezier(0.22,1,0.36,1) forwards;}
+.slide.exit-l{animation:outL 0.48s cubic-bezier(0.55,0,0.78,0) forwards;}
+.slide.exit-r{animation:outR 0.48s cubic-bezier(0.55,0,0.78,0) forwards;}
+@keyframes inR{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes inL{from{transform:translateX(-100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes outL{from{transform:translateX(0);opacity:1;}to{transform:translateX(-100%);opacity:0;}}
+@keyframes outR{from{transform:translateX(0);opacity:1;}to{transform:translateX(100%);opacity:0;}}
+
+#dots{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10;}
+.dot{width:7px;height:7px;border-radius:999px;background:rgba(196,181,253,0.22);border:1px solid rgba(196,181,253,0.38);transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;}
+.dot.active{background:var(--lav3);width:24px;}
+
+.si{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.si.show{opacity:1;transform:translateY(0);}
+
+.btn{font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.9rem;padding:0.68rem 1.6rem;border-radius:999px;border:none;cursor:pointer;transition:transform 0.18s,box-shadow 0.18s;position:relative;overflow:hidden;letter-spacing:0.01em;}
+.btn:active{transform:scale(0.95)!important;}
+.btn-p{background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;box-shadow:0 6px 28px rgba(168,85,247,0.38);}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(168,85,247,0.52);}
+.btn-g{background:rgba(196,181,253,0.09);border:1px solid rgba(196,181,253,0.2);color:var(--lav2);}
+.btn-g:hover{background:rgba(196,181,253,0.15);}
+.nav-row{display:flex;gap:0.75rem;margin-top:1.4rem;justify-content:center;}
+@keyframes glowPulse{0%,100%{box-shadow:0 6px 28px rgba(168,85,247,0.38);}50%{box-shadow:0 8px 46px rgba(192,132,252,0.58);}}
+
+/* S0 HERO */
+#s0{background:radial-gradient(ellipse at 50% 10%,#1e0a3c 0%,var(--dark) 70%);}
+.only-for{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--lav3);opacity:0.85;margin-bottom:0.7rem;animation:fadeUp 0.8s ease both;}
+.hero-initial{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,rgba(192,132,252,0.16),rgba(168,85,247,0.26));border:1.5px solid rgba(196,181,253,0.38);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:600;color:var(--lav3);margin:0 auto 1.1rem;animation:fadeUp 0.8s 0.06s ease both;box-shadow:0 0 40px rgba(168,85,247,0.22);position:relative;}
+.hero-initial::after{content:'';position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(196,181,253,0.16);animation:ringPulse 3s ease-in-out infinite;}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:0.45;}50%{transform:scale(1.08);opacity:0.9;}}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,10vw,4.8rem);font-weight:700;letter-spacing:0.03em;text-align:center;line-height:1;background:linear-gradient(135deg,var(--lav) 0%,var(--lav3) 45%,var(--p1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeUp 0.8s 0.11s ease both;margin-bottom:0.4rem;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,3.8vw,1.22rem);font-style:italic;color:var(--muted);text-align:center;animation:fadeUp 0.8s 0.19s ease both;margin-bottom:0.6rem;max-width:300px;line-height:1.55;}
+.hero-sub{font-size:0.85rem;color:rgba(245,240,255,0.42);text-align:center;max-width:280px;line-height:1.62;animation:fadeUp 0.8s 0.26s ease both;margin-bottom:1.7rem;}
+.hero-btn-wrap{animation:fadeUp 0.8s 0.33s ease both;animation-fill-mode:both;}
+.btn-p.hero-btn{animation:glowPulse 2.5s 1.3s ease-in-out infinite;}
+
+/* S1 STORY */
+#s1{background:radial-gradient(ellipse at 20% 80%,#180f30 0%,var(--dark) 65%);}
+.slide-label{font-size:0.67rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--p1);opacity:0.78;margin-bottom:0.35rem;text-align:center;}
+.slide-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.55rem,6vw,2.3rem);text-align:center;line-height:1.2;margin-bottom:1.15rem;font-weight:600;}
+.story-list{width:100%;max-width:360px;}
+.story-card{background:var(--card);border:1px solid var(--card-b);border-radius:20px;padding:1rem 1.2rem;margin-bottom:0.8rem;transition:border-color 0.3s,transform 0.25s,box-shadow 0.25s;}
+.story-card:hover{border-color:rgba(192,132,252,0.42);transform:translateY(-2px);box-shadow:0 8px 28px rgba(168,85,247,0.1);}
+.s-date{font-size:0.67rem;color:var(--p1);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.26rem;}
+.s-title{font-size:0.94rem;font-weight:600;margin-bottom:0.2rem;}
+.s-desc{font-size:0.82rem;color:var(--muted);line-height:1.58;}
+
+/* S2 ABOUT HER */
+#s2{background:radial-gradient(ellipse at 80% 20%,#1a0f2e 0%,var(--dark) 65%);}
+.fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.78rem;width:100%;max-width:360px;}
+.fact-card{background:var(--card);border:1px solid var(--card-b);border-radius:20px;padding:1.05rem 0.88rem;text-align:center;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;cursor:default;}
+.fact-card:hover{transform:scale(1.05) rotate(-0.5deg);border-color:var(--lav3);box-shadow:0 0 28px rgba(196,181,253,0.16);}
+.fact-emoji{font-size:2.1rem;display:block;margin-bottom:0.42rem;animation:wobble 3.5s ease-in-out infinite;}
+.fact-card:nth-child(2) .fact-emoji{animation-delay:.55s;}
+.fact-card:nth-child(3) .fact-emoji{animation-delay:1.1s;}
+.fact-card:nth-child(4) .fact-emoji{animation-delay:1.65s;}
+@keyframes wobble{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+.fact-head{font-size:0.79rem;font-weight:600;color:var(--lav3);margin-bottom:0.26rem;}
+.fact-body{font-size:0.73rem;color:var(--muted);line-height:1.48;}
+
+/* S3 MESSAGE */
+#s3{background:radial-gradient(ellipse at 50% 90%,#1f0a38 0%,var(--dark) 65%);}
+.c-wrap{width:100%;max-width:360px;display:flex;flex-direction:column;align-items:center;}
+.c-box{background:var(--card);border:1px solid rgba(196,181,253,0.2);border-radius:22px;padding:1.6rem 1.4rem;font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,3.5vw,1.24rem);font-style:italic;line-height:1.65;text-align:center;min-height:100px;display:flex;align-items:center;justify-content:center;width:100%;margin-bottom:1.05rem;transition:border-color 0.45s,box-shadow 0.45s,opacity 0.22s;}
+.c-box.glow{border-color:rgba(192,132,252,0.58);box-shadow:0 0 50px rgba(168,85,247,0.18);}
+.c-box.fade{opacity:0;}
+.c-hint{font-size:0.73rem;color:var(--muted);margin-top:0.4rem;text-align:center;}
+
+/* S4 FINAL */
+#s4{background:radial-gradient(ellipse at 50% 100%,#200c40 0%,var(--dark) 60%);}
+.final-wrap{background:var(--card);border:1px solid rgba(196,181,253,0.16);border-radius:28px;padding:1.9rem 1.55rem;max-width:360px;width:100%;text-align:center;box-shadow:0 0 70px rgba(168,85,247,0.07);}
+.hearts{display:flex;gap:6px;justify-content:center;font-size:1.5rem;margin-bottom:0.85rem;}
+.hearts span{animation:hb 1.8s ease-in-out infinite;}
+.hearts span:nth-child(2){animation-delay:.15s;font-size:2rem;}
+.hearts span:nth-child(3){animation-delay:.3s;}
+@keyframes hb{0%,100%{transform:scale(1);}35%{transform:scale(1.28);}65%{transform:scale(0.92);}}
+.final-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,5.5vw,1.95rem);font-weight:600;margin-bottom:0.95rem;line-height:1.22;}
+.final-p{font-size:0.85rem;color:rgba(245,240,255,0.7);line-height:1.72;margin-bottom:0.72rem;}
+.final-p.shine{color:var(--lav3);font-weight:500;}
+.divider{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--lav3),transparent);margin:0.85rem auto;}
+.signature{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--p1);font-size:1.06rem;margin-top:0.55rem;}
+
+.cf{position:fixed;pointer-events:none;z-index:999;animation:cfFall 2s cubic-bezier(0.2,0.8,0.3,1) forwards;}
+@keyframes cfFall{0%{opacity:1;transform:translateY(0) rotate(0deg);}85%{opacity:.9;}100%{opacity:0;transform:translateY(300px) rotate(680deg) scale(0.4);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<div class="aurora">
+  <div class="aurora-orb orb1"></div>
+  <div class="aurora-orb orb2"></div>
+  <div class="aurora-orb orb3"></div>
+</div>
+<div class="petals" id="petals"></div>
+
+<div id="dots">
+  <div class="dot active" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+</div>
+
+<div id="slides">
+
+  <!-- S0: HERO -->
+  <div class="slide current" id="s0">
+    <div class="only-for">✦ only for ✦</div>
+    <div class="hero-initial">L</div>
+    <div class="hero-name">Lekha</div>
+    <div class="hero-tagline">cheppukovadam nerchukoledu,<br>so I made this just for you 💜</div>
+    <p class="hero-sub">oka game lo kalishamu — kaani nee gurinchi feel avvadam real life lo jarigindhi</p>
+    <div class="hero-btn-wrap">
+      <button class="btn btn-p hero-btn" onclick="goTo(1)">continue cheyyi ✨</button>
+    </div>
+  </div>
+
+  <!-- S1: STORY -->
+  <div class="slide" id="s1">
+    <div class="slide-label si">maa story</div>
+    <h2 class="slide-title si" style="transition-delay:.06s">19 February nundi<br><span style="color:var(--p1);font-style:italic;">ila jarigindhi</span> 🎮</h2>
+    <div class="story-list">
+      <div class="story-card si" style="transition-delay:.12s">
+        <div class="s-date">19 Feb · Free Fire</div>
+        <div class="s-title">random game, unexpected feel</div>
+        <div class="s-desc">Aa roju nenu chala nervous ga unna — nee tho matladataniki words raaledu. Kaani aa match lo nuvvu first matladavu, adi nenu expect cheyyledu 😌</div>
+      </div>
+      <div class="story-card si" style="transition-delay:.2s">
+        <div class="s-date">aa తర్వాత</div>
+        <div class="s-title">nuvvu matladutunnappudu time telusukadu</div>
+        <div class="s-desc">Nee tho matladutunnappudu naa ki time telusukadu — adi naa ki chala surprise. Ila feel avutanu ani nenu expect cheyyledu 💜</div>
+      </div>
+      <div class="story-card si" style="transition-delay:.28s">
+        <div class="s-date">ippudu</div>
+        <div class="s-title">nee gurinchi cheppukovadam easy kaadu</div>
+        <div class="s-desc">Real lo face to face cheppukovadam nerchukoledu — so website chesanu. Idi chadivithe artham avutundhi, nenu ila unna ani 💜</div>
+      </div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.35s">
+      <button class="btn btn-g" onclick="goTo(0)">← back</button>
+      <button class="btn btn-p" onclick="goTo(2)">next →</button>
+    </div>
+  </div>
+
+  <!-- S2: ABOUT HER -->
+  <div class="slide" id="s2">
+    <div class="slide-label si">nee gurinchi</div>
+    <h2 class="slide-title si" style="transition-delay:.06s">nenu notice chesindi<br><span style="color:var(--lav3);font-style:italic;">ivi anni</span> 🌸</h2>
+    <div class="fact-grid">
+      <div class="fact-card si" style="transition-delay:.12s">
+        <span class="fact-emoji">🔇</span>
+        <div class="fact-head">nuvvu selective</div>
+        <div class="fact-body">abbailatho matladadhu — nanno matladavu. Adi naa ki chala matter chesindhi 💜</div>
+      </div>
+      <div class="fact-card si" style="transition-delay:.18s">
+        <span class="fact-emoji">💎</span>
+        <div class="fact-head">chala loyal</div>
+        <div class="fact-body">nuvvu eppudu genuine ga untavu — aa quality chala rare 🫡</div>
+      </div>
+      <div class="fact-card si" style="transition-delay:.24s">
+        <span class="fact-emoji">🌸</span>
+        <div class="fact-head">naturally manchi</div>
+        <div class="fact-body">nuvvu try cheskovadam ledu — ala untavu. Adi nenu chala like chesanu 😌</div>
+      </div>
+      <div class="fact-card si" style="transition-delay:.3s">
+        <span class="fact-emoji">⏳</span>
+        <div class="fact-head">nee tho time</div>
+        <div class="fact-body">nee tho matladutunnappudu naa ki time telusukadu — idi nijam 💫</div>
+      </div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.37s">
+      <button class="btn btn-g" onclick="goTo(1)">← back</button>
+      <button class="btn btn-p" onclick="goTo(3)">next →</button>
+    </div>
+  </div>
+
+  <!-- S3: MESSAGE -->
+  <div class="slide" id="s3">
+    <div class="slide-label si">naa nundi nee ki</div>
+    <h2 class="slide-title si" style="transition-delay:.06s">cheppukovadam<br><span style="color:var(--lav3);font-style:italic;">nerchukoledu, kaani...</span> 💌</h2>
+    <div class="c-wrap">
+      <div class="c-box si" id="cbox" style="transition-delay:.12s">button press cheyyi — naa nundi nee ki oka message 💜</div>
+      <button class="btn btn-p si" style="transition-delay:.2s" onclick="showMsg()">✨ open cheyyi ✨</button>
+      <p class="c-hint si" style="transition-delay:.26s">every time press chesthe new message vastundhi 💜</p>
+    </div>
+    <div class="nav-row si" style="transition-delay:.32s">
+      <button class="btn btn-g" onclick="goTo(2)">← back</button>
+      <button class="btn btn-p" onclick="goTo(4)">next →</button>
+    </div>
+  </div>
+
+  <!-- S4: FINAL -->
+  <div class="slide" id="s4">
+    <div class="final-wrap si">
+      <div class="hearts"><span>💜</span><span>💜</span><span>💜</span></div>
+      <div class="final-title">Lekha, okka saari<br>adi cheppalanukunna...</div>
+      <p class="final-p">19 Feb nundi nee tho matladatam naa ki chala special ga feel avutundhi. Nuvvu abbailatho matladadhu — kaani nanno matladavu. Aa oka moment naa ki chala matter chesindhi.</p>
+      <p class="final-p">Nee tho direct ga cheppukovadam nerchukoledu — so ila chesanu. Stupid anipistundha teliyadu, kaani idi genuine 😌</p>
+      <div class="divider"></div>
+      <p class="final-p shine">nuvvu manchidhi, loyal ga untavu, nee presence naa ki chala special — idi nijam 💜</p>
+      <div class="signature">— nee friend, always 💜</div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.1s">
+      <button class="btn btn-g" onclick="goTo(3)">← back</button>
+      <button class="btn btn-p" onclick="homeConfetti()">🏠 home ✨</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var c=document.getElementById('petals');
+  for(var i=0;i<22;i++){
+    var p=document.createElement('div');p.className='petal';
+    var s=5+Math.random()*9;
+    p.style.cssText='width:'+s+'px;height:'+s+'px;background:rgba('+(178+Math.floor(Math.random()*38))+','+(118+Math.floor(Math.random()*40))+',252,'+(0.12+Math.random()*0.22)+');left:'+Math.random()*100+'%;animation-duration:'+(11+Math.random()*12)+'s;animation-delay:'+(Math.random()*15)+'s;transform:rotate('+Math.floor(Math.random()*360)+'deg);';
+    c.appendChild(p);
+  }
+})();
+
+var cur=0,busy=false;
+var slides=document.querySelectorAll('.slide');
+var dots=document.querySelectorAll('.dot');
+
+function goTo(n){
+  if(busy||n===cur)return;busy=true;
+  var prev=cur,dir=n>prev?'r':'l';
+  slides[prev].classList.add(dir==='r'?'exit-l':'exit-r');
+  slides[prev].classList.remove('current');
+  cur=n;
+  slides[cur].classList.add(dir==='r'?'enter-r':'enter-l');
+  slides[cur].classList.add('current');
+  dots[prev].classList.remove('active');dots[cur].classList.add('active');
+  var items=slides[cur].querySelectorAll('.si');
+  items.forEach(function(el){el.classList.remove('show');});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){items.forEach(function(el){el.classList.add('show');});});});
+  setTimeout(function(){slides[prev].classList.remove('exit-l','exit-r','current');slides[cur].classList.remove('enter-r','enter-l');busy=false;},620);
+}
+
+window.addEventListener('load',function(){
+  setTimeout(function(){slides[0].querySelectorAll('.si').forEach(function(el){el.classList.add('show');});},180);
+});
+
+var sx=0;
+document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){
+  var dx=e.changedTouches[0].clientX-sx;
+  if(Math.abs(dx)>48){if(dx<0&&cur<4)goTo(cur+1);if(dx>0&&cur>0)goTo(cur-1);}
+},{passive:true});
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'&&cur<4)goTo(cur+1);
+  if(e.key==='ArrowLeft'&&cur>0)goTo(cur-1);
+});
+
+var msgs=[
+  "nee tho matladutunnappudu naa ki time telusukadu — seriously. Adi naa ki favourite feeling 💜",
+  "nuvvu abbailatho matladadhu antavu — kaani nee tho matladataniki nenu chala lucky feel avutunna 😌",
+  "nee presence naa ki chala special — idi cheppukovadam nerchukoledu, so website chesanu 💜",
+  "nuvvu genuine ga, loyally untavu — aa quality naa ki chala rare ga anipistundhi 🌸",
+  "19 Feb aa match leka pothe mana conversation start avvaledhu — so aa day naa ki chala special 🎮💜",
+  "nuvvu manchidhi ani nenu cheppadam ledu — nuvvu feel avvataniki ila chesanu 💜",
+  "nee gurinchi direct ga cheppukovadam nerchukoledu — kaani idi chadivithe artham avutundhi 😌",
+];
+var lastM=-1;
+function showMsg(){
+  var i;do{i=Math.floor(Math.random()*msgs.length);}while(i===lastM&&msgs.length>1);lastM=i;
+  var b=document.getElementById('cbox');
+  b.classList.remove('glow');b.classList.add('fade');
+  setTimeout(function(){b.textContent=msgs[i];b.classList.remove('fade');b.classList.add('glow');},240);
+  launch(28);
+}
+
+function launch(n){
+  var cls=['#c084fc','#ddd6fe','#a855f7','#ede9fe','#ffffff','#e879f9','#818cf8'];
+  for(var i=0;i<n;i++){(function(){
+    var el=document.createElement('div');el.className='cf';
+    el.style.background=cls[Math.floor(Math.random()*cls.length)];
+    el.style.left=Math.random()*100+'vw';el.style.top='-14px';
+    el.style.width=(5+Math.random()*8)+'px';el.style.height=(5+Math.random()*14)+'px';
+    el.style.borderRadius=Math.random()>.5?'50%':'3px';
+    el.style.animationDuration=(1.4+Math.random()*.8)+'s';
+    el.style.animationDelay=(Math.random()*.3)+'s';
+    el.style.transform='rotate('+Math.floor(Math.random()*360)+'deg)';
+    document.body.appendChild(el);setTimeout(function(){el.remove();},2400);
+  })();}
+}
+
+function homeConfetti(){goTo(0);launch(44);}
+</script>
+</body>
+</html>

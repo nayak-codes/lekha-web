@@ -1,574 +1,470 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lekha's Funny Website 😂</title>
-  <style>
-    :root {
-      --pink: #ff4d6d;
-      --light: #fff;
-      --bg1: #ff9a9e;
-      --bg2: #fad0c4;
-      --shadow: rgba(0, 0, 0, 0.18);
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Only for Lekha 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --p1:#c084fc;--p2:#a855f7;
+  --lav:#ede9fe;--lav2:#ddd6fe;--lav3:#c4b5fd;
+  --dark:#0d0b14;
+  --card:rgba(196,181,253,0.07);
+  --card-b:rgba(196,181,253,0.15);
+  --text:#f5f0ff;
+  --muted:rgba(245,240,255,0.52);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-family:'DM Sans',sans-serif;color:var(--text);-webkit-tap-highlight-color:transparent;}
 
-    * {
-      box-sizing: border-box;
-    }
+/* AURORA */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);}
+.o1{width:420px;height:420px;background:radial-gradient(circle,rgba(168,85,247,0.26),transparent 70%);top:-80px;left:-60px;animation:d1 18s ease-in-out infinite;}
+.o2{width:360px;height:360px;background:radial-gradient(circle,rgba(192,132,252,0.18),transparent 70%);bottom:-60px;right:-40px;animation:d2 22s ease-in-out infinite;}
+.o3{width:240px;height:240px;background:radial-gradient(circle,rgba(237,233,254,0.1),transparent 70%);top:42%;left:58%;animation:d3 15s ease-in-out infinite;}
+@keyframes d1{0%,100%{transform:translate(0,0);}50%{transform:translate(55px,38px);}}
+@keyframes d2{0%,100%{transform:translate(0,0);}50%{transform:translate(-48px,-28px);}}
+@keyframes d3{0%,100%{transform:translate(0,0);}50%{transform:translate(-38px,48px);}}
 
-    body {
-      min-height: 100vh;
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      text-align: center;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      animation: gradientShift 12s ease infinite;
-      overflow-x: hidden;
-      padding: 2rem 1rem 4rem;
-      color: #222;
-      position: relative;
-    }
+/* PETALS */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+.petal{position:absolute;border-radius:50% 0 50% 0;animation:pfall linear infinite;opacity:0;}
+@keyframes pfall{0%{transform:translateY(-20px) rotate(0deg);opacity:0;}8%{opacity:0.5;}92%{opacity:0.35;}100%{transform:translateY(110vh) rotate(700deg);opacity:0;}}
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.25), transparent 60%),
-        radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.16), transparent 55%);
-      filter: blur(40px);
-      opacity: 0.85;
-      animation: slowDrift 14s ease-in-out infinite;
-      z-index: -2;
-    }
+/* SLIDES */
+#slides{position:fixed;inset:0;z-index:2;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.5rem 3.8rem;pointer-events:none;opacity:0;overflow:hidden;}
+.slide.current{pointer-events:auto;opacity:1;}
+.slide.er{animation:inR .6s cubic-bezier(.22,1,.36,1) forwards;}
+.slide.el{animation:inL .6s cubic-bezier(.22,1,.36,1) forwards;}
+.slide.xl{animation:outL .48s cubic-bezier(.55,0,.78,0) forwards;}
+.slide.xr{animation:outR .48s cubic-bezier(.55,0,.78,0) forwards;}
+@keyframes inR{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes inL{from{transform:translateX(-100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+@keyframes outL{from{transform:translateX(0);opacity:1;}to{transform:translateX(-100%);opacity:0;}}
+@keyframes outR{from{transform:translateX(0);opacity:1;}to{transform:translateX(100%);opacity:0;}}
 
-    @keyframes slowDrift {
-      0% { transform: translate(0, 0); }
-      50% { transform: translate(55px, -40px); }
-      100% { transform: translate(0, 0); }
-    }
+/* DOTS */
+#dots{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10;}
+.dot{width:7px;height:7px;border-radius:999px;background:rgba(196,181,253,0.22);border:1px solid rgba(196,181,253,0.38);transition:all .4s cubic-bezier(.34,1.56,.64,1);cursor:pointer;}
+.dot.active{background:var(--lav3);width:24px;}
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+/* STAGGER */
+.si{opacity:0;transform:translateY(18px);transition:opacity .52s ease,transform .52s ease;}
+.si.show{opacity:1;transform:translateY(0);}
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      margin: 0;
-      letter-spacing: 0.02em;
-      color: var(--light);
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-    }
+/* BUTTONS */
+.btn{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.9rem;padding:.68rem 1.6rem;border-radius:999px;border:none;cursor:pointer;transition:transform .18s,box-shadow .18s;position:relative;overflow:hidden;letter-spacing:.01em;}
+.btn:active{transform:scale(.95)!important;}
+.bp{background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;box-shadow:0 6px 28px rgba(168,85,247,.38);}
+.bp:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(168,85,247,.52);}
+.bg{background:rgba(196,181,253,.09);border:1px solid rgba(196,181,253,.2);color:var(--lav2);}
+.bg:hover{background:rgba(196,181,253,.15);}
+.nav-row{display:flex;gap:.75rem;margin-top:1.4rem;justify-content:center;}
+@keyframes gp{0%,100%{box-shadow:0 6px 28px rgba(168,85,247,.38);}50%{box-shadow:0 8px 46px rgba(192,132,252,.58);}}
 
-    .sparkle {
-      display: inline-block;
-      opacity: 0.9;
-      animation: floatSparkle 2.4s ease-in-out infinite;
-    }
+/* ── SHARED LABEL / TITLE ── */
+.slabel{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--p1);opacity:.78;margin-bottom:.35rem;text-align:center;}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(1.55rem,6vw,2.3rem);text-align:center;line-height:1.2;margin-bottom:1.15rem;font-weight:600;}
 
-    @keyframes floatSparkle {
-      0% { transform: translateY(0) scale(1); opacity: 0.9; }
-      50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
-      100% { transform: translateY(0) scale(1); opacity: 0.9; }
-    }
+/* ── S0: HERO ── */
+#s0{background:radial-gradient(ellipse at 50% 10%,#1e0a3c 0%,var(--dark) 70%);}
+.only-for{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lav3);opacity:.85;margin-bottom:.7rem;animation:fu .8s ease both;}
+.hero-initial{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,rgba(192,132,252,.16),rgba(168,85,247,.26));border:1.5px solid rgba(196,181,253,.38);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:600;color:var(--lav3);margin:0 auto 1.1rem;animation:fu .8s .06s ease both;box-shadow:0 0 40px rgba(168,85,247,.22);position:relative;}
+.hero-initial::after{content:'';position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(196,181,253,.16);animation:rp 3s ease-in-out infinite;}
+@keyframes rp{0%,100%{transform:scale(1);opacity:.45;}50%{transform:scale(1.08);opacity:.9;}}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,10vw,4.8rem);font-weight:700;letter-spacing:.03em;text-align:center;line-height:1;background:linear-gradient(135deg,var(--lav) 0%,var(--lav3) 45%,var(--p1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fu .8s .11s ease both;margin-bottom:.5rem;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,3.8vw,1.22rem);font-style:italic;color:var(--muted);text-align:center;animation:fu .8s .19s ease both;margin-bottom:.55rem;max-width:290px;line-height:1.6;}
+.hero-sub{font-size:.85rem;color:rgba(245,240,255,.4);text-align:center;max-width:270px;line-height:1.65;animation:fu .8s .26s ease both;margin-bottom:1.7rem;}
+.hbw{animation:fu .8s .33s ease both;animation-fill-mode:both;}
+.bp.hb{animation:gp 2.5s 1.3s ease-in-out infinite;}
 
-    .page-header {
-      padding: 2.5rem 1rem 0;
-      max-width: 900px;
-      margin: 0 auto;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+/* ── S1: STORY ── */
+#s1{background:radial-gradient(ellipse at 20% 80%,#180f30 0%,var(--dark) 65%);}
+.slist{width:100%;max-width:360px;}
+.scard{background:var(--card);border:1px solid var(--card-b);border-radius:20px;padding:1rem 1.2rem;margin-bottom:.8rem;transition:border-color .3s,transform .25s,box-shadow .25s;}
+.scard:hover{border-color:rgba(192,132,252,.42);transform:translateY(-2px);box-shadow:0 8px 28px rgba(168,85,247,.1);}
+.sd{font-size:.67rem;color:var(--p1);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.24rem;}
+.st{font-size:.94rem;font-weight:600;margin-bottom:.2rem;}
+.sb{font-size:.83rem;color:var(--muted);line-height:1.62;}
 
-    .page-header.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* ── S2: ABOUT HER ── */
+#s2{background:radial-gradient(ellipse at 80% 20%,#1a0f2e 0%,var(--dark) 65%);}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:.78rem;width:100%;max-width:360px;}
+.fcard{background:var(--card);border:1px solid var(--card-b);border-radius:20px;padding:1.05rem .85rem;text-align:center;transition:transform .25s,border-color .25s,box-shadow .25s;cursor:default;}
+.fcard:hover{transform:scale(1.04) rotate(-.5deg);border-color:var(--lav3);box-shadow:0 0 28px rgba(196,181,253,.16);}
+.femoji{font-size:1.9rem;display:block;margin-bottom:.38rem;animation:wb 3.5s ease-in-out infinite;}
+.fcard:nth-child(2) .femoji{animation-delay:.55s;}
+.fcard:nth-child(3) .femoji{animation-delay:1.1s;}
+.fcard:nth-child(4) .femoji{animation-delay:1.65s;}
+@keyframes wb{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
+.fh{font-size:.78rem;font-weight:600;color:var(--lav3);margin-bottom:.22rem;}
+.fb{font-size:.72rem;color:var(--muted);line-height:1.52;}
 
-    .tagline {
-      margin: 0.75rem auto 0;
-      font-size: 1.1rem;
-      opacity: 0.8;
-      max-width: 520px;
-    }
+/* ── S3: NEW — WHY YOU ── */
+#s3{background:radial-gradient(ellipse at 30% 60%,#16082e 0%,var(--dark) 65%);}
+.why-list{width:100%;max-width:360px;display:flex;flex-direction:column;gap:.75rem;}
+.wcard{background:var(--card);border:1px solid var(--card-b);border-radius:18px;padding:.95rem 1.15rem;display:flex;align-items:flex-start;gap:.85rem;transition:border-color .3s,transform .22s;}
+.wcard:hover{border-color:rgba(192,132,252,.4);transform:translateX(4px);}
+.wnum{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--p1);opacity:.7;flex-shrink:0;line-height:1;margin-top:.05rem;}
+.wtext{display:flex;flex-direction:column;gap:.18rem;}
+.wt{font-size:.9rem;font-weight:600;}
+.wb{font-size:.8rem;color:var(--muted);line-height:1.55;}
 
-    .pages {
-      display: flex;
-      width: 400vw;
-      transition: transform 0.8s ease;
-      margin-top: 2rem;
-      perspective: 1200px;
-    }
+/* ── S4: NEW — ONE THING ── */
+#s4{background:radial-gradient(ellipse at 60% 30%,#1a0830 0%,var(--dark) 65%);}
+.one-wrap{width:100%;max-width:360px;}
+.one-card{background:var(--card);border:1px solid rgba(196,181,253,.22);border-radius:22px;padding:1.8rem 1.5rem;text-align:center;margin-bottom:.85rem;}
+.one-emoji{font-size:3rem;margin-bottom:.9rem;display:block;animation:hb2 2s ease-in-out infinite;}
+@keyframes hb2{0%,100%{transform:scale(1);}40%{transform:scale(1.15);}70%{transform:scale(.94);}}
+.one-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,4.5vw,1.6rem);font-weight:600;margin-bottom:.7rem;line-height:1.3;}
+.one-body{font-size:.84rem;color:var(--muted);line-height:1.72;}
+.one-body span{color:var(--lav3);font-weight:500;}
 
-    .page {
-      width: 100vw;
-      padding: 0 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(16px) scale(0.98);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      pointer-events: none;
-    }
+/* ── S5: MESSAGES ── */
+#s5{background:radial-gradient(ellipse at 50% 90%,#1f0a38 0%,var(--dark) 65%);}
+.cwrap{width:100%;max-width:360px;display:flex;flex-direction:column;align-items:center;}
+.cbox{background:var(--card);border:1px solid rgba(196,181,253,.2);border-radius:22px;padding:1.6rem 1.4rem;font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,3.5vw,1.22rem);font-style:italic;line-height:1.72;text-align:center;min-height:110px;display:flex;align-items:center;justify-content:center;width:100%;margin-bottom:1rem;transition:border-color .45s,box-shadow .45s,opacity .22s;white-space:pre-line;}
+.cbox.glow{border-color:rgba(192,132,252,.58);box-shadow:0 0 50px rgba(168,85,247,.18);}
+.cbox.fade{opacity:0;}
+.chint{font-size:.72rem;color:var(--muted);margin-top:.38rem;text-align:center;}
 
-    .page.slide-left {
-      transform: translateX(30px) translateY(16px) scale(0.98);
-    }
+/* ── S6: FINAL ── */
+#s6{background:radial-gradient(ellipse at 50% 100%,#200c40 0%,var(--dark) 60%);}
+.fwrap{background:var(--card);border:1px solid rgba(196,181,253,.16);border-radius:28px;padding:1.9rem 1.55rem;max-width:360px;width:100%;text-align:center;box-shadow:0 0 70px rgba(168,85,247,.07);}
+.hearts{display:flex;gap:6px;justify-content:center;font-size:1.5rem;margin-bottom:.85rem;}
+.hearts span{animation:hb 1.8s ease-in-out infinite;}
+.hearts span:nth-child(2){animation-delay:.15s;font-size:2rem;}
+.hearts span:nth-child(3){animation-delay:.3s;}
+@keyframes hb{0%,100%{transform:scale(1);}35%{transform:scale(1.28);}65%{transform:scale(.92);}}
+.ftitle{font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,5.5vw,1.95rem);font-weight:600;margin-bottom:.95rem;line-height:1.22;}
+.fp{font-size:.86rem;color:rgba(245,240,255,.7);line-height:1.75;margin-bottom:.72rem;}
+.fp.shine{color:var(--lav3);font-weight:500;}
+.divider{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--lav3),transparent);margin:.85rem auto;}
+.sig{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--p1);font-size:1.06rem;margin-top:.55rem;}
 
-    .page.slide-right {
-      transform: translateX(-30px) translateY(16px) scale(0.98);
-    }
-
-    .page.active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    .page .card {
-      transform: translateY(20px);
-      opacity: 0;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-
-    .page.active .card {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .card {
-      position: relative;
-      width: min(460px, 100%);
-      padding: 2.5rem 2rem 2rem;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 24px;
-      box-shadow: 0 18px 40px var(--shadow);
-      animation: floatCard 6s ease-in-out infinite;
-      overflow: hidden;
-    }
-
-    @keyframes floatCard {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-18px); }
-      100% { transform: translateY(0); }
-    }
-
-    .card::before,
-    .card::after {
-      content: '';
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.5;
-      z-index: -1;
-    }
-
-    .card::before {
-      top: -120px;
-      left: -120px;
-      background: radial-gradient(circle at 30% 30%, #ffb3c1 0%, transparent 60%);
-    }
-
-    .card::after {
-      bottom: -120px;
-      right: -120px;
-      background: radial-gradient(circle at 70% 70%, #ffd6a5 0%, transparent 62%);
-    }
-
-    h2 {
-      margin: 0 0 0.6rem;
-      font-size: 1.75rem;
-      letter-spacing: 0.02em;
-    }
-
-    p {
-      margin: 0.6rem 0;
-      font-size: 1rem;
-      line-height: 1.55;
-    }
-
-    .facts {
-      text-align: left;
-      padding-left: 1.2rem;
-      margin: 1rem 0;
-    }
-
-    .facts li {
-      margin: 0.5rem 0;
-    }
-
-    .alert {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      padding: 0.55rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(255, 77, 109, 0.12);
-      color: #ff2e65;
-      font-weight: 600;
-      margin: 0.85rem 0 1.5rem;
-      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.2);
-    }
-
-    button {
-      position: relative;
-      padding: 0.85rem 1.4rem;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
-      background: linear-gradient(135deg, #ff4d6d, #ffb3c1);
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 18px 30px rgba(255, 77, 109, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      overflow: hidden;
-    }
-
-    button::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 65%);
-      opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      pointer-events: none;
-    }
-
-    button:active::after {
-      opacity: 1;
-      transform: scale(1.25);
-      transition: none;
-    }
-
-    button:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 24px 40px rgba(255, 77, 109, 0.35);
-    }
-
-    button:active {
-      transform: translateY(1px) scale(0.98);
-    }
-
-    button .pop {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      opacity: 0;
-      animation: pop 0.6s ease-out;
-    }
-
-    @keyframes pop {
-      0% { opacity: 0; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.15); }
-      100% { opacity: 0; transform: scale(1.3); }
-    }
-
-    #joke {
-      margin-top: 1.5rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #333;
-      min-height: 3.2rem;
-    }
-
-    .secret {
-      min-height: 3rem;
-    }
-
-    .card-actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-    }
-
-    .pager {
-      position: fixed;
-      bottom: 1.6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.6rem;
-      z-index: 10;
-    }
-
-    .pager__dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .page-header, .page .card, .pager__dot {
-      will-change: transform, opacity;
-    }
-
-    .pager__dot.active {
-      background: rgba(255, 255, 255, 0.95);
-      transform: scale(1.25);
-    }
-
-    .confetti {
-      position: fixed;
-      pointer-events: none;
-      width: 12px;
-      height: 12px;
-      opacity: 0;
-      transform-origin: center;
-      animation: confettiFall 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
-    }
-
-    @keyframes confettiFall {
-      0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
-      70% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(280px) rotate(720deg) scale(0.6); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.001ms !important;
-      }
-    }
-  </style>
+/* CONFETTI */
+.cf{position:fixed;pointer-events:none;z-index:999;animation:cff 2s cubic-bezier(.2,.8,.3,1) forwards;}
+@keyframes cff{0%{opacity:1;transform:translateY(0) rotate(0deg);}85%{opacity:.9;}100%{opacity:0;transform:translateY(300px) rotate(680deg) scale(.4);}}
+@keyframes fu{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+</style>
 </head>
-
 <body>
-  <header class="page-header">
-    <h1>
-      Hey Lekha
-      <span class="sparkle" aria-hidden="true">✨</span>
-      My Friend
-      <span class="sparkle" aria-hidden="true">✨</span>
-    </h1>
-    <p class="tagline" data-text="Nuvvu na friend, na special person. Iddam cheppali anukuntunna..."></p>
-  </header>
 
-  <main class="pages" aria-label="Lekha story pages">
-    <section class="page" data-page="0" aria-label="Welcome page">
-      <div class="card">
-        <h2>Welcome!</h2>
-        <p>Ready for a mini adventure about the one and only Lekha?</p>
+<div class="aurora">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+</div>
+<div class="petals" id="pt"></div>
 
-        <button type="button" data-action="next">
-          Let’s go!
-          <span class="pop" aria-hidden="true">🚀</span>
-        </button>
-      </div>
-    </section>
+<div id="dots">
+  <div class="dot active" onclick="g(0)"></div>
+  <div class="dot" onclick="g(1)"></div>
+  <div class="dot" onclick="g(2)"></div>
+  <div class="dot" onclick="g(3)"></div>
+  <div class="dot" onclick="g(4)"></div>
+  <div class="dot" onclick="g(5)"></div>
+  <div class="dot" onclick="g(6)"></div>
+</div>
 
-    <section class="page" data-page="1" aria-label="About Lekha">
-      <div class="card">
-        <h2>About Lekha</h2>
-        <p>She turns simple moments into unforgettable memories, and everyone around her smiles a little wider.</p>
-        <ul class="facts">
-          <li>✨ Has a talent for making friends laugh instantly</li>
-          <li>🎨 Loves creativity, color, and surprises</li>
-          <li>💖 Always makes kindness feel effortless</li>
-        </ul>
-        <div class="card-actions">
-          <button type="button" data-action="prev">Back</button>
-          <button type="button" data-action="next">Next</button>
-        </div>
-      </div>
-    </section>
+<div id="slides">
 
-    <section class="page" data-page="2" aria-label="Secret surprise">
-      <div class="card">
-        <h2>Secret surprise</h2>
-        <p>Tap the button to reveal a compliment and light up the screen with confetti.</p>
-
-        <button type="button" data-action="secret">
-          Reveal the Secret
-          <span class="pop" aria-hidden="true">💥</span>
-        </button>
-
-        <p id="joke" aria-live="polite" class="secret"></p>
-
-        <div class="card-actions">
-          <button type="button" data-action="prev">Back</button>
-          <button type="button" data-action="home">Home</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="page" data-page="3" aria-label="Final message">
-      <div class="card">
-        <h2>Just one more thing...</h2>
-        <p>Every moment with you feels like a highlight reel — and this page is our final encore.</p>
-        <p>Thanks for scrolling! Keep being unforgettable.</p>
-
-        <div class="card-actions">
-          <button type="button" data-action="prev">Back</button>
-          <button type="button" data-action="home">Home</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="pager" aria-label="Page indicator">
-    <span class="pager__dot" data-page="0"></span>
-    <span class="pager__dot" data-page="1"></span>
-    <span class="pager__dot" data-page="2"></span>
-    <span class="pager__dot" data-page="3"></span>
+  <!-- S0: HERO -->
+  <div class="slide current" id="s0">
+    <div class="only-for">✦ only for ✦</div>
+    <div class="hero-initial">L</div>
+    <div class="hero-name">Lekha</div>
+    <div class="hero-tagline">
+      nuvvu naa ki special.<br>
+      idi nuvvu feel avvaalani unna. 💜
+    </div>
+    <p class="hero-sub">19 Feb nundi oka feeling undi — idi aa feeling.</p>
+    <div class="hbw">
+      <button class="btn bp hb" onclick="g(1)">continue cheyyi ✨</button>
+    </div>
   </div>
 
-  <script>
-    const pages = Array.from(document.querySelectorAll('.page'));
-    const pagerDots = Array.from(document.querySelectorAll('.pager__dot'));
-    const pagesEl = document.querySelector('.pages');
-    const complimentText = document.getElementById('joke');
+  <!-- S1: STORY -->
+  <div class="slide" id="s1">
+    <div class="slabel si">jarigindhi ila</div>
+    <h2 class="stitle si" style="transition-delay:.06s">
+      19 Feb.<br>
+      <span style="color:var(--p1);font-style:italic;">adi start.</span> 🎮
+    </h2>
+    <div class="slist">
+      <div class="scard si" style="transition-delay:.12s">
+        <div class="sd">19 February · Free Fire</div>
+        <div class="st">nervous ga unna.</div>
+        <div class="sb">nee tho matladaniki words raaledu.<br>nuvvu matladavu ani unna —<br>kaani nuvvu matladavu. adi nenu expect cheyyledu. 😌</div>
+      </div>
+      <div class="scard si" style="transition-delay:.2s">
+        <div class="sd">aa తర్వాత</div>
+        <div class="st">time telusukaledu.</div>
+        <div class="sb">nee tho matladutunnappudu<br>naa ki time telusukadu.<br>adi naa ki new feeling. 💜</div>
+      </div>
+      <div class="scard si" style="transition-delay:.28s">
+        <div class="sd">ippudu</div>
+        <div class="st">oka feeling undi.</div>
+        <div class="sb">aa feeling emi cheyyadam teliyaledu —<br>kaani aa feeling nijam. 💜</div>
+      </div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.35s">
+      <button class="btn bg" onclick="g(0)">← back</button>
+      <button class="btn bp" onclick="g(2)">next →</button>
+    </div>
+  </div>
 
-    const compliments = [
-      "Your smile is a full-on superpower, Lekha! 😍",
-      "Every room gets brighter when you walk in. 🌟",
-      "Your laughter is the best kind of music. 🎶",
-      "Legends are written about people like you. 📖",
-      "You’re the kind of energy everyone wants around. ✨",
-      "If happiness had a face, it would look like yours. 😁",
-    ];
+  <!-- S2: ABOUT HER -->
+  <div class="slide" id="s2">
+    <div class="slabel si">nee gurinchi</div>
+    <h2 class="stitle si" style="transition-delay:.06s">
+      nenu nee lo<br>
+      <span style="color:var(--lav3);font-style:italic;">ivi chusanu.</span> 🌸
+    </h2>
+    <div class="fgrid">
+      <div class="fcard si" style="transition-delay:.12s">
+        <span class="femoji">🔇</span>
+        <div class="fh">nuvvu selective.</div>
+        <div class="fb">andhariki kaadu.<br>nanno matladavu.<br>adi naa ki chala matter chesindhi. 💜</div>
+      </div>
+      <div class="fcard si" style="transition-delay:.18s">
+        <span class="femoji">💎</span>
+        <div class="fh">nuvvu genuine.</div>
+        <div class="fb">pretend cheskovadam ledu.<br>nuvvu nuvvuge untavu.<br>adi nenu chala like chesanu. 🫡</div>
+      </div>
+      <div class="fcard si" style="transition-delay:.24s">
+        <span class="femoji">🌸</span>
+        <div class="fh">nuvvu manchi.</div>
+        <div class="fb">prove cheskovadam ledu —<br>naturally ala untavu.<br>rare adi. 😌</div>
+      </div>
+      <div class="fcard si" style="transition-delay:.3s">
+        <span class="femoji">⏳</span>
+        <div class="fh">nee tho time.</div>
+        <div class="fb">nee tho matladutunnappudu<br>time telusukadu naa ki.<br>seriously. 💫</div>
+      </div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.37s">
+      <button class="btn bg" onclick="g(1)">← back</button>
+      <button class="btn bp" onclick="g(3)">next →</button>
+    </div>
+  </div>
 
-    let currentPage = 0;
+  <!-- S3: NEW — WHY YOU -->
+  <div class="slide" id="s3">
+    <div class="slabel si">nenu feel chesindi</div>
+    <h2 class="stitle si" style="transition-delay:.06s">
+      nee tho<br>
+      <span style="color:var(--p1);font-style:italic;">different ga untundhi.</span> 💜
+    </h2>
+    <div class="why-list">
+      <div class="wcard si" style="transition-delay:.12s">
+        <div class="wnum">01</div>
+        <div class="wtext">
+          <div class="wt">nuvvu matladutunnappudu.</div>
+          <div class="wb">time telusukadu. world forget avutundhi. aa feeling naa ki before ledu. 💜</div>
+        </div>
+      </div>
+      <div class="wcard si" style="transition-delay:.19s">
+        <div class="wnum">02</div>
+        <div class="wtext">
+          <div class="wt">nuvvu genuine ga untavu.</div>
+          <div class="wb">show off ledu, drama ledu. nuvvu nuvvuge untavu — adi nenu chala value chesanu. 😌</div>
+        </div>
+      </div>
+      <div class="wcard si" style="transition-delay:.26s">
+        <div class="wnum">03</div>
+        <div class="wtext">
+          <div class="wt">nuvvu naa ki safe ga feel avvistunnav.</div>
+          <div class="wb">nee tho matladataniki nervous avvadam takkuva ga avutundhi — aa change nenu notice chesanu. 💜</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.33s">
+      <button class="btn bg" onclick="g(2)">← back</button>
+      <button class="btn bp" onclick="g(4)">next →</button>
+    </div>
+  </div>
 
-    function setPage(index, direction = 0) {
-      const newIndex = Math.max(0, Math.min(index, pages.length - 1));
-      currentPage = newIndex;
+  <!-- S4: NEW — ONE THING -->
+  <div class="slide" id="s4">
+    <div class="slabel si">okka maata</div>
+    <h2 class="stitle si" style="transition-delay:.06s">
+      nenu nee ki<br>
+      <span style="color:var(--lav3);font-style:italic;">cheppukovadam undi.</span> 💌
+    </h2>
+    <div class="one-wrap si" style="transition-delay:.12s">
+      <div class="one-card">
+        <span class="one-emoji">💜</span>
+        <div class="one-title">nuvvu naa ki special ga feel avutunnav.</div>
+        <div class="one-body">
+          idi crush kaadu, infatuation kaadu.<br><br>
+          nuvvu <span>genuine</span> ga untavu, <span>loyal</span> ga untavu, <span>manchi</span> ga untavu —<br>
+          aa combination naa ki chala rare ga anipistundhi.<br><br>
+          nuvvu naa ki special —<br>
+          adi feel avvaalani unna. 💜
+        </div>
+      </div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.2s">
+      <button class="btn bg" onclick="g(3)">← back</button>
+      <button class="btn bp" onclick="g(5)">next →</button>
+    </div>
+  </div>
 
-      pages.forEach((page, i) => {
-        page.classList.toggle('active', i === currentPage);
-        page.setAttribute('aria-hidden', i === currentPage ? 'false' : 'true');
+  <!-- S5: MESSAGES -->
+  <div class="slide" id="s5">
+    <div class="slabel si">naa nundi</div>
+    <h2 class="stitle si" style="transition-delay:.06s">
+      nee ki cheppukovadam<br>
+      <span style="color:var(--lav3);font-style:italic;">undi naa lo.</span> 💌
+    </h2>
+    <div class="cwrap">
+      <div class="cbox si" id="cbox" style="transition-delay:.12s">open cheyyi 💜</div>
+      <button class="btn bp si" style="transition-delay:.2s" onclick="showMsg()">✨ open cheyyi ✨</button>
+      <p class="chint si" style="transition-delay:.26s">every time press chesthe new message vastundhi 💜</p>
+    </div>
+    <div class="nav-row si" style="transition-delay:.32s">
+      <button class="btn bg" onclick="g(4)">← back</button>
+      <button class="btn bp" onclick="g(6)">next →</button>
+    </div>
+  </div>
 
-        page.classList.remove('slide-left', 'slide-right');
-        if (i !== currentPage) {
-          page.classList.add(direction > 0 ? 'slide-left' : 'slide-right');
-        }
-      });
+  <!-- S6: FINAL — no loop, just ends here -->
+  <div class="slide" id="s6">
+    <div class="fwrap si">
+      <div class="hearts"><span>💜</span><span>💜</span><span>💜</span></div>
+      <div class="ftitle">Lekha,<br>okka saari adi cheppalanukunna...</div>
+      <p class="fp">
+        nuvvu naa ki special ga feel avutunnav.<br>
+        aa feeling cheppukovadam nervous ga undhi.<br>
+        kaani aa feeling nijam.
+      </p>
+      <p class="fp">
+        nuvvu respond chesthe chalu naa ki.<br>
+        inka em kavvadam ledu. 😌
+      </p>
+      <div class="divider"></div>
+      <p class="fp shine">
+        nuvvu genuine, loyal, manchi —<br>
+        nee presence naa ki chala different. 💜
+      </p>
+      <div class="sig">— nee friend, always. 💜</div>
+    </div>
+    <div class="nav-row si" style="transition-delay:.1s">
+      <button class="btn bg" onclick="g(5)">← back</button>
+    </div>
+  </div>
 
-      pagesEl.style.transform = `translateX(-${currentPage * 100}vw)`;
-      pagerDots.forEach((dot, i) => dot.classList.toggle('active', i === currentPage));
-    }
+</div>
 
-    function randomItem(array) {
-      return array[Math.floor(Math.random() * array.length)];
-    }
+<script>
+// petals
+(function(){
+  var c=document.getElementById('pt');
+  for(var i=0;i<22;i++){
+    var p=document.createElement('div');p.className='petal';
+    var s=5+Math.random()*9;
+    p.style.cssText='width:'+s+'px;height:'+s+'px;background:rgba('
+      +(178+~~(Math.random()*38))+','+(118+~~(Math.random()*40))+',252,'
+      +(0.12+Math.random()*.22)+');'
+      +'left:'+Math.random()*100+'%;'
+      +'animation-duration:'+(11+Math.random()*12)+'s;'
+      +'animation-delay:'+(Math.random()*15)+'s;'
+      +'transform:rotate('+~~(Math.random()*360)+'deg);';
+    c.appendChild(p);
+  }
+})();
 
-    function triggerConfetti(amount) {
-      const colors = ['#ff49a0', '#ffcc4d', '#6dffb7', '#61d6ff', '#b67bff'];
-      for (let i = 0; i < amount; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'confetti';
-        dot.style.background = colors[Math.floor(Math.random() * colors.length)];
-        dot.style.left = `${Math.random() * 100}vw`;
-        dot.style.top = `${-20 - Math.random() * 40}px`;
-        dot.style.width = `${8 + Math.random() * 10}px`;
-        dot.style.height = dot.style.width;
-        dot.style.transform = `rotate(${Math.random() * 360}deg)`;
-        dot.style.animationDuration = `${1.2 + Math.random() * 0.6}s`;
-        dot.style.animationDelay = `${Math.random() * 0.2}s`;
-        document.body.appendChild(dot);
-        setTimeout(() => dot.remove(), 1900);
-      }
-    }
+var cur=0,busy=false,TOTAL=7;
+var SL=document.querySelectorAll('.slide');
+var DT=document.querySelectorAll('.dot');
 
-    function showSecret() {
-      complimentText.textContent = randomItem(compliments);
-      triggerConfetti(24);
-    }
-
-    function typeText(el, text, speed = 35) {
-      el.textContent = '';
-      let i = 0;
-      const interval = setInterval(() => {
-        el.textContent += text[i] || '';
-        i += 1;
-        if (i > text.length) clearInterval(interval);
-      }, speed);
-    }
-
-    function addSwipeNavigation() {
-      let startX = 0;
-      let startY = 0;
-      let isMoving = false;
-
-      window.addEventListener('touchstart', (event) => {
-        const touch = event.touches[0];
-        startX = touch.clientX;
-        startY = touch.clientY;
-        isMoving = true;
-      });
-
-      window.addEventListener('touchmove', (event) => {
-        if (!isMoving) return;
-        const touch = event.touches[0];
-        const deltaX = touch.clientX - startX;
-        const deltaY = touch.clientY - startY;
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
-          isMoving = false;
-          if (deltaX < 0) setPage(currentPage + 1, 1);
-          else setPage(currentPage - 1, -1);
-        }
-      });
-
-      window.addEventListener('touchend', () => {
-        isMoving = false;
-      });
-    }
-
-    document.addEventListener('click', (event) => {
-      const action = event.target.closest('[data-action]')?.dataset?.action;
-      if (!action) return;
-
-      if (action === 'next') setPage(currentPage + 1, 1);
-      if (action === 'prev') setPage(currentPage - 1, -1);
-      if (action === 'home') setPage(0);
-      if (action === 'secret') showSecret();
+function g(n){
+  if(busy||n===cur||n<0||n>=TOTAL)return;
+  busy=true;
+  var p=cur,d=n>p?'r':'l';
+  SL[p].classList.add(d==='r'?'xl':'xr');
+  SL[p].classList.remove('current');
+  cur=n;
+  SL[cur].classList.add(d==='r'?'er':'el');
+  SL[cur].classList.add('current');
+  DT[p].classList.remove('active');
+  DT[cur].classList.add('active');
+  var items=SL[cur].querySelectorAll('.si');
+  items.forEach(function(el){el.classList.remove('show');});
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      items.forEach(function(el){el.classList.add('show');});
     });
+  });
+  setTimeout(function(){
+    SL[p].classList.remove('xl','xr','current');
+    SL[cur].classList.remove('er','el');
+    busy=false;
+  },640);
+}
 
-    pagerDots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const target = Number(dot.dataset.page);
-        setPage(target, target > currentPage ? 1 : -1);
-      });
-    });
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    SL[0].querySelectorAll('.si').forEach(function(el){el.classList.add('show');});
+  },180);
+});
 
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowRight') setPage(currentPage + 1, 1);
-      if (event.key === 'ArrowLeft') setPage(currentPage - 1, -1);
-      if (event.key === 'Escape') setPage(0);
-    });
+// swipe
+var sx=0;
+document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){
+  var dx=e.changedTouches[0].clientX-sx;
+  if(Math.abs(dx)>48){
+    if(dx<0&&cur<TOTAL-1)g(cur+1);
+    if(dx>0&&cur>0)g(cur-1);
+  }
+},{passive:true});
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'&&cur<TOTAL-1)g(cur+1);
+  if(e.key==='ArrowLeft'&&cur>0)g(cur-1);
+});
 
-    // Kick off first view
-    document.body.classList.add('loaded');
-    addSwipeNavigation();
+// messages
+var msgs=[
+  "nuvvu matladutunnappudu\nnaa ki time telusukadu.\nadi naa ki chala different. 💜",
+  "nuvvu selective antavu —\nkaani nee tho matladatam\nnaa ki privilege la feel avutundhi. 😌",
+  "nuvvu naa ki respond chesthe\nauthomatically naa ki happy ga avutundhi.\nadi nijam. 💜",
+  "nuvvu genuine ga untavu.\nnuvvu nuvvuge untavu —\naa quality naa ki chala rare. 🌸",
+  "19 Feb —\naa oka day leka pothe\nee feeling start avvaledhu. 🎮💜",
+  "nuvvu naa ki special.\nela cheppalo teliyadu —\nkaani adi nijam. 💜",
+  "nee presence\nnaa ki different ga feel avvistundhi.\nsimple ga. 😌",
+];
+var lm=-1;
+function showMsg(){
+  var i;
+  do{i=~~(Math.random()*msgs.length);}while(i===lm&&msgs.length>1);
+  lm=i;
+  var b=document.getElementById('cbox');
+  b.classList.remove('glow');b.classList.add('fade');
+  setTimeout(function(){
+    b.textContent=msgs[i];
+    b.classList.remove('fade');b.classList.add('glow');
+  },240);
+  launch(26);
+}
 
-    const tagline = document.querySelector('.tagline');
-    setTimeout(() => {
-      document.querySelector('.page-header')?.classList.add('visible');
-      if (tagline && tagline.dataset.text) typeText(tagline, tagline.dataset.text, 32);
-    }, 200);
-
-    pages[0].classList.add('active');
-    pages[0].setAttribute('aria-hidden', 'false');
-    setPage(0);
-  </script>
+function launch(n){
+  var cl=['#c084fc','#ddd6fe','#a855f7','#ede9fe','#fff','#e879f9','#818cf8'];
+  for(var i=0;i<n;i++){(function(){
+    var el=document.createElement('div');el.className='cf';
+    el.style.background=cl[~~(Math.random()*cl.length)];
+    el.style.left=Math.random()*100+'vw';el.style.top='-14px';
+    el.style.width=(5+Math.random()*8)+'px';el.style.height=(5+Math.random()*14)+'px';
+    el.style.borderRadius=Math.random()>.5?'50%':'3px';
+    el.style.animationDuration=(1.4+Math.random()*.8)+'s';
+    el.style.animationDelay=(Math.random()*.3)+'s';
+    el.style.transform='rotate('+~~(Math.random()*360)+'deg)';
+    document.body.appendChild(el);
+    setTimeout(function(){el.remove();},2500);
+  })();}
+}
+</script>
 </body>
 </html>
